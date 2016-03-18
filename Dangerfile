@@ -19,10 +19,13 @@ rspec_files.each do |current|
   rspec["examples"].each do |current_test|
     next if current_test["status"] == "passed"
 
-    message = current_test["exception"]["message"].strip.gsub(/\n+/, "").gsub(/\\t+/, "").gsub(/\\n+/, "")[0..60]
+    new_line = "</code><br /><code>".freeze
+    border = "<hr />"
+    message = current_test["exception"]["message"].strip.gsub(/\n+/, new_line).gsub(/\\t+/, new_line).gsub(/\\n+/, new_line)
 
-    error_message = "#{current_test["file_path"]}: #{current_test["line_number"]}"
-    error_message += "<br />#{message}"
+    error_message = "#{current_test["file_path"]}:#{current_test["line_number"]}"
+    error_message += border
+    error_message += message
 
     fail("<code>#{error_message}</code>")
   end
