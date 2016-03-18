@@ -23,7 +23,7 @@ rspec_files.each do |current|
     border = "<hr />"
     message = current_test["exception"]["message"].strip.gsub(/\n+/, new_line).gsub(/\\t+/, new_line).gsub(/\\n+/, new_line)
 
-    error_message = "#{current_test["file_path"]}:#{current_test["line_number"]}"
+    error_message = "<code>#{current_test["file_path"]}:#{current_test["line_number"]}</code>"
     error_message += border
     error_message += "<pre>#{message}</pre>"
 
